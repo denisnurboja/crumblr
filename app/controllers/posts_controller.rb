@@ -23,14 +23,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-      if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
-      else
-        render action: 'new' 
-      end
+    if @post.save
+      redirect_to @post, notice: 'Post was successfully created.'
+    else
+      render action: 'new' 
     end
   end
-
+      
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.' 
+      redirect_to posts_url, notice: 'Post was successfully destroyed.'
     end
   end
 
@@ -58,4 +57,3 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content)
     end
-end
