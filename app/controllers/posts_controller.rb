@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [:show]
 
   # GET /posts
   def index
@@ -26,19 +27,19 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
-      render action: 'new' 
+      render action: 'new'
     end
   end
-      
+
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
-      render action: 'edit' 
+      render action: 'edit'
     end
   end
-  
+
 
   # DELETE /posts/1
   def destroy
